@@ -55,7 +55,10 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: @game
+        render json: [
+          game: @game,
+          chart_data: @chart_data
+        ]
       end
     end
   end

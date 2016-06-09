@@ -24,6 +24,14 @@ class PlayersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: [
+          player: { id: @player.id, name: @player.name, email: @player.email },
+        ]
+      end
+    end
   end
 
   def update
