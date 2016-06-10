@@ -199,6 +199,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  byebug
   chartkick
   codeclimate-test-reporter
   coffee-rails

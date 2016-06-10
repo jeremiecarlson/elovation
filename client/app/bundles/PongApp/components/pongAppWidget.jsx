@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import $ from 'jQuery';
 
 export default class PongAppWidget extends React.Component {
   static propTypes = {
@@ -14,7 +15,29 @@ export default class PongAppWidget extends React.Component {
     // Uses lodash to bind all methods to the context of the object instance, otherwise
     // the methods defined here would not refer to the component's class, not the component
     // instance itself.
-    // _.bindAll(this, 'handleChange');
+    _.bindAll(this, 'handleClick');
+  }
+
+  handleClick = () => {
+    console.log('clicked')
+    $.ajax({
+      url: "games/1/results",
+      type: "POST",
+      data: {
+        result: {
+          "teams": {
+            "0": {
+              "players": ["5"],
+              "relation": "defeats"
+            },
+            "1": {
+              "players": ["7"]
+            }
+          }
+        }
+      },
+      success: function(resp){ console.log('success') },
+    });
   }
 
   render() {
@@ -44,6 +67,7 @@ export default class PongAppWidget extends React.Component {
             </div>
           })
         }
+        <button onClick={this.handleClick}>Add New</button>
       </div>
     );
   }
