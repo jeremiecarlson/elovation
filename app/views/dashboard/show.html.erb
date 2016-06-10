@@ -1,5 +1,5 @@
 <div class="row-fluid">
-
+	<%= react_component('Dashboard', {games: @games[0]}, {prerender: true}) %>
 	<div class='span8'>
 		<h1>Elovation Games</h1>
 		<%= link_to "New Game", new_game_path, class: "btn btn-primary" %>
