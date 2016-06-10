@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.4'
+ruby '2.3.1'
 
 gem 'rails', '~> 4.1.7'
 
@@ -45,3 +45,5 @@ group :test do
   gem 'timecop'
   gem 'codeclimate-test-reporter', require: nil
 end
+
+gem "react_on_rails", "~> 5"
