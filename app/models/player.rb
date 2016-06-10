@@ -28,12 +28,13 @@ class Player < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
   validates :email, allow_blank: true, format: /@/
 
-  def as_json
-    {
-      name: name,
-      email: email
-    }
-  end
+  # Somehow this messes up calling Player.all elsewhere
+  # def as_json
+  #   {
+  #     name: name,
+  #     email: email
+  #   }
+  # end
 
   def recent_results
     results.order("created_at DESC").limit(5)

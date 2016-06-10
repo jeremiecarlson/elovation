@@ -43,5 +43,6 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "offline-plugin": "^3.3.1"
   }
 }

@@ -14,7 +14,7 @@ ReactOnRails.configure do |config|
   # Server bundle is a single file for all server rendering of components.
   # Set the server_bundle_js_file to "" if you know that you will not be server rendering.
 
-  config.server_bundle_js_file = ""
+  config.server_bundle_js_file = "server-bundle.js"
 
   # increase if you're on JRuby
   config.server_renderer_pool_size = 1
@@ -31,7 +31,7 @@ ReactOnRails.configure do |config|
   # The following options can be overriden by passing to the helper method:
 
   # Default is false
-  config.prerender = false
+  config.prerender = true
   # Default is true for development, off otherwise
   config.trace = Rails.env.development?
   # Default is false, enable if your content security policy doesn't include `style-src: 'unsafe-inline'`

@@ -46,4 +46,5 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
 end
 
+gem "therubyracer"
 gem "react_on_rails", "~> 5"

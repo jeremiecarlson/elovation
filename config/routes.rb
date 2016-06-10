@@ -10,5 +10,8 @@ Elovation::Application.routes.draw do
   end
 
   get '/dashboard' => 'dashboard#show', as: :dashboard
-  root to: 'dashboard#show'
+
+  get 'pong_app', to: 'pong_app#index'
+
+  root 'pong_app#index'
 end

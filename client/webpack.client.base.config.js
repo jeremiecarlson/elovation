@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const OfflinePlugin = require('offline-plugin');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 const nodeEnv = devBuild ? 'development' : 'production';
@@ -21,7 +22,7 @@ module.exports = {
     // This will contain the app entry points defined by webpack.hot.config and
     // webpack.rails.config
     app: [
-      './app/bundles/HelloWorld/startup/clientRegistration',
+      './app/bundles/PongApp/startup/clientRegistration',
     ],
   },
   resolve: {
@@ -52,6 +53,17 @@ module.exports = {
       // In other words, we only put what's in the vendor entry definition in vendor-bundle.js
       minChunks: Infinity,
     }),
+
+    // Offline plugin
+    new OfflinePlugin({
+      ServiceWorker: {
+        events: true
+      },
+      updateStrategy: 'all',
+      version: 'v' + (nodeEnv) + (new Date).toLocaleString(),
+      publicPath: '/assets/',
+      relativePaths: false
+    })
   ],
   module: {
     loaders: [
