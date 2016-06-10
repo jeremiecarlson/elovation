@@ -1,4 +1,5 @@
 Elovation::Application.routes.draw do
+  get 'hello_world', to: 'hello_world#index'
   resources :games do
     resources :results, only: [:create, :destroy, :new]
     resources :ratings, only: [:index]
