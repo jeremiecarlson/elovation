@@ -9,6 +9,7 @@ import PongApp from '../containers/PongApp';
 // This code here binds your smart component to the redux store.
 export default (props) => {
   const store = createStore(props);
+
   const reactComponent = (
     <Provider store={store}>
       <PongApp />

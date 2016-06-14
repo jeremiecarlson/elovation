@@ -12,6 +12,7 @@ import loggerMiddleware from 'lib/middlewares/loggerMiddleware';
 
 import reducers from '../reducers';
 import { initialStates } from '../reducers';
+import { hydrateGame, Player } from 'lib/hydrate';
 
 export default props => {
   // This is how we get initial props Rails into redux.
@@ -21,9 +22,9 @@ export default props => {
   // Redux expects to initialize the store using an Object, not an Immutable.Map
   const initialState = {
     $$PongAppStore: $$PongAppState.merge({
-      game,
-      results,
-      players,
+      game: hydrateGame(game),
+      results: results,
+      players: players.map(Player),
     }),
   };
 

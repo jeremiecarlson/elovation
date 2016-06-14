@@ -4,10 +4,11 @@
 import mirrorCreator from 'mirror-creator';
 
 const actionTypes = mirrorCreator([
-  'HELLO_WORLD_NAME_UPDATE',
+  'ADD_RESULT',
+  'UPDATE_RESULTS',
 ]);
 
-// actionTypes = {HELLO_WORLD_NAME_UPDATE: "HELLO_WORLD_NAME_UPDATE"}
-// Notice how we don't have to duplicate HELLO_WORLD_NAME_UPDATE twice
+// actionTypes = {ADD_RESULT: "ADD_RESULT"}
+// Notice how we don't have to duplicate ADD_RESULT twice
 // thanks to mirror-creator.
 export default actionTypes;

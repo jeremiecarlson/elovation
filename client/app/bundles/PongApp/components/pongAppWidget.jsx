@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import $ from 'jQuery';
+import Immutable from 'immutable';
 
 export default class PongAppWidget extends React.Component {
   static propTypes = {
     game: PropTypes.object.isRequired,
     results: PropTypes.object.isRequired,
     players: PropTypes.object.isRequired,
+    addResult: PropTypes.func.isRequired,
+    updateResults: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -18,51 +21,54 @@ export default class PongAppWidget extends React.Component {
     _.bindAll(this, 'handleClick');
   }
 
+  componentWillUpdate(nextProps) {
+  }
+
   handleClick = () => {
-    console.log('clicked')
+    // POST to server in this format
     $.ajax({
       url: "games/1/results",
       type: "POST",
+      dataType: "json",
       data: {
         result: {
           "teams": {
             "0": {
-              "players": ["5"],
+              "players": ["1"],
               "relation": "defeats"
             },
             "1": {
-              "players": ["7"]
+              "players": ["2"]
             }
           }
         }
       },
-      success: function(resp){ console.log('success') },
+      success: (response) => {
+        this.props.updateResults(response[0].game);
+      },
     });
   }
 
   render() {
-    const { game, results, players } = this.props;
-    console.log(this.props)
-    const topResults = game.get('ratings');
-    const latestGames = game.get('results');
+    const { game, players } = this.props;
+    const { ratings, results } = game;
     return (
       <div className="container">
         <h1>Pong App</h1>
         <h2>Top 5</h2>
         {
-          topResults.map((result, i)=> {
-            const player = result.get('player')
-            return <div key={`player ${i}`}>
-              {player.get('name')} - {result.get('value')}
+          ratings.map(({ player })=> {
+            return <div key={player.id}>
+              {player.name} - {player.value}
             </div>
           })
         }
         <h2>Recent Games</h2>
         {
-          latestGames.map((result, i)=> {
+          results.map((result, i)=> {
             return <div key={`result ${i}`}>
               <p>
-                <span>{result.get('winner')}</span> defeats <span>{result.get('loser')}</span>
+                <span>{result.winner}</span> defeats <span>{result.loser}</span>
               </p>
             </div>
           })

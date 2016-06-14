@@ -15,8 +15,9 @@ function select(state) {
 const PongApp = (props) => {
   const { dispatch, $$PongAppStore } = props;
   const actions = bindActionCreators(PongAppActionCreators, dispatch);
-  const { updateName } = actions;
+  const { addResult, updateResults } = actions;
   const game = $$PongAppStore.get('game');
+  // updateResults(game);
   const results = $$PongAppStore.get('results');
   const players = $$PongAppStore.get('players');
 
@@ -24,7 +25,7 @@ const PongApp = (props) => {
   // This is equivalent to:
   // <PongAppWidget $$PongAppStore={$$PongAppStore} actions={actions} />
   return (
-    <PongAppWidget {...{ updateName, game, results, players }} />
+    <PongAppWidget {...{ addResult, updateResults, game, results, players }} />
   );
 };
 

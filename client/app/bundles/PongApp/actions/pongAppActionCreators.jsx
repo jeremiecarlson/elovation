@@ -1,8 +1,15 @@
 import actionTypes from '../constants/PongAppConstants';
 
-export function updateName(name) {
+export function addResult(result) {
   return {
-    type: actionTypes.HELLO_WORLD_NAME_UPDATE,
-    name,
+    type: actionTypes.ADD_RESULT,
+    result,
+  };
+}
+
+export function updateResults(game) {
+  return {
+    type: actionTypes.UPDATE_RESULTS,
+    game,
   };
 }
