@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import { Link, withRouter } from 'react-router';
 import _ from 'lodash';
 import $ from 'jQuery';
 import Immutable from 'immutable';
 
-export default class PongAppWidget extends React.Component {
+class AppContainer extends React.Component {
   static propTypes = {
     game: PropTypes.object.isRequired,
     results: PropTypes.object.isRequired,
@@ -22,6 +23,10 @@ export default class PongAppWidget extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
+  }
+
+  routerWillLeave(nextLocation) {
+    console.log('leaving', nextLocation)
   }
 
   handleClick = () => {
@@ -50,11 +55,15 @@ export default class PongAppWidget extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { game, players } = this.props;
     const { ratings, results } = game;
     return (
       <div className="container">
         <h1>Pong App</h1>
+        <Link to="/new">
+          Add Result
+        </Link>
         <h2>Top 5</h2>
         {
           ratings.map(({ player })=> {
@@ -78,3 +87,5 @@ export default class PongAppWidget extends React.Component {
     );
   }
 }
+
+export default withRouter(AppContainer)

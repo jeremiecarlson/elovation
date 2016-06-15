@@ -43,6 +43,7 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
-    "offline-plugin": "^3.3.1"
+    "offline-plugin": "^3.3.1",
+    "react-router": "^2.4.1"
   }
 }

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import PongAppWidget from '../components/PongAppWidget';
+import AppContainer from '../components/AppContainer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Immutable from 'immutable';
@@ -23,9 +23,9 @@ const PongApp = (props) => {
 
   // This uses the ES2015 spread operator to pass properties as it is more DRY
   // This is equivalent to:
-  // <PongAppWidget $$PongAppStore={$$PongAppStore} actions={actions} />
+  // <AppContainer $$PongAppStore={$$PongAppStore} actions={actions} />
   return (
-    <PongAppWidget {...{ addResult, updateResults, game, results, players }} />
+    <AppContainer {...props} {...{ addResult, updateResults, game, results, players }} />
   );
 };
 
